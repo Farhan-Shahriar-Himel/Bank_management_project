@@ -52,6 +52,10 @@ class Bank:
             del self.sv_accounts[acc_number]
         elif acc_number in self.cur_accounts:
             del self.cur_accounts[acc_number]
+        else:
+            print("The account number is not correct\n")
+            return
+        print("Account has been deleted\n")
 
     def logIN(self, email, password):
         return password == self.__admin._password
@@ -132,6 +136,7 @@ class Account:
         if self.ln_cnt < 2 and amount < self.bank.balance:
             self.loan += amount
             self.bank.total_loan += amount
+            self.bank.balance -= amount
             self.balance += amount
             self.ln_cnt += 1
             today = datetime.now
@@ -176,13 +181,16 @@ class Account:
         
         if amount <= self.loan:
             self.loan -= amount
-            
+            self.bank.total_loan -= amount
+            self.bank.balance += amount
             self.history.append(f"Loan has been decreased by {amount}$")
             print("The loan amount has been decreased")
             print()
         else:
+            self.bank.total_loan -= self.loan
             self.loan = 0
             self.balance += self.loan - amount
+            self.bank.balance += amount
             
             self.history.append(f"Loan has been cleared and extra amount has been added in bank balance")
             print("You have submitted a larger cash then your loan. Rest of the cash added to your bank balance. \nThank You")

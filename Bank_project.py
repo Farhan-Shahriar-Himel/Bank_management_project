@@ -21,9 +21,11 @@ while True:
     print("Press 2. For User Log in")
     print("Press 3. To exit")
     choice = input("Enter your choice: ")
+    print('\n')
     if choice == '1':
         email = input("Enter your Email:(phitron@gmail.com) ")
         password = input("Enter your password:(1234) ")
+        print()
         if SonaliBank.logIN(email, password):
             while True:
                 print("Press 1. To Create an account")
@@ -87,6 +89,7 @@ while True:
                     print()
 
                 if option == '9':
+                    print()
                     break
         else:
             print("Wrong Password")
@@ -150,6 +153,7 @@ while True:
                         SonaliBank.sv_accounts[ac_number].pay_the_loan(amount)
                     
                     elif option == '8':
+                        print()
                         break
             else:
                 print()
@@ -208,6 +212,7 @@ while True:
                         SonaliBank.cur_accounts[ac_number].pay_the_loan(amount)
 
                     elif option == '8':
+                        print()
                         break
             else:
                 print()
